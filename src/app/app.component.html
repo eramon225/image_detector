@@ -1,0 +1,24 @@
+<main class="main">
+
+  <div class="input-group">
+    <input class="form-control" placeholder="Objects/id" (keyup)="updateSearch($event)">
+    <button class="btn btn-primary" (click)="onSearch()">Search</button>
+  </div>
+
+  <app-image-input-modal/>
+  
+  <div class="row row-cols-3 g-3">
+      @for ( d of incomingData; track d.id ) {
+        <div class="col">
+
+          <app-thumbnail
+            [label]="d.label"
+            [imageUrl]="d.location"
+            [objects]="d.objects"
+            [data]="d.data"
+          />
+
+        </div>
+      }
+  </div>
+</main>

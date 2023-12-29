@@ -1,0 +1,16 @@
+<div class="card mx-auto">
+    <img 
+        class="card-img-top"
+        src="{{objectURL}}"
+        alt="Card image cap"
+    >
+    <div class="card-body">
+      <h5 class="card-title">{{label}}</h5>
+      @if( objects && objects.length > 0 && objects[0].tag ) {
+        <p>{{objects[0].tag.en}}</p>
+      }
+    </div>
+    <app-details-collapse
+        [objects]="objects"
+    />
+</div>

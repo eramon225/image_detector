@@ -1,0 +1,18 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Object</th>
+			<th scope="col">Confidence</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (obj of objects; track obj.confidence) {
+			<tr>
+				<td>{{obj.tag.en}}</td>
+				<td>
+					{{ obj.confidence.toFixed(2) }}
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

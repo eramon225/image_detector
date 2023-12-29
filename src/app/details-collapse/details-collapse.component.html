@@ -1,0 +1,18 @@
+<p>
+	<button
+		type="button"
+		class="btn btn-primary"
+		(click)="collapse.toggle()"
+		[attr.aria-expanded]="!isCollapsed"
+		aria-controls="collapseExample"
+	>
+		Details
+	</button>
+</p>
+<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+	<div class="card">
+		<app-objects-table
+            [objects]="objects"
+        />
+	</div>
+</div>
