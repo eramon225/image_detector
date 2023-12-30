@@ -15,7 +15,12 @@
             </div>
             <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
         </form>
-        @if( waiting === true ) {
+        @if ( failed === true ) {
+          <div class="text-danger">
+            Failed to POST image!
+          </div>
+        }
+        @if( waiting === true && failed === false ) {
           <div class="spinner-border mx-auto d-block" role="status">
           </div>
         }
