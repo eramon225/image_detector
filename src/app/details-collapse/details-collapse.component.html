@@ -1,4 +1,4 @@
-<p class="text-center">
+<p class="text-center mt-3">
 	<button
 		type="button"
 		class="btn btn-primary"
@@ -10,17 +10,18 @@
 	</button>
 </p>
 <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">id: {{info.id}}</li>
-    <li class="list-group-item">Detect: <span class="text-warning">{{info.detect}}</span></li>
-  </ul>
-	@if ( info.objects && info.objects.length ) {
-		<div class="card">
-			<app-objects-table
-				[objects]="info.objects"
-			/>
-		</div>
-	} @else {
-    <span class="badge rounded-pill bg-danger">No objects detected</span>
+  <div class="mx-2">ID: {{info.id}}</div>
+  <div class="mx-2">Location: {{info.location}}</div>
+  @if( info.detect === false ) {
+    <div class="badge bg-warning text-dark mx-2">Detection not ran</div>
+  }
+  @if ( info.objects !== null && info.objects.length > 0 ) {
+    <div class="card">
+      <app-objects-table
+        [objects]="info.objects"
+      />
+    </div>
+  } @else if ( info.detect === true ) {
+    <div class="badge rounded-pill bg-danger">No objects detected</div>
   }
 </div>
