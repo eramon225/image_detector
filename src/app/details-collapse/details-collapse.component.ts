@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
-import { FoundObject } from '../image.types';
+import { FoundObject, ImageInfo } from '../image.types';
 import { ObjectsTableComponent } from '../objects-table/objects-table.component';
 
 @Component({
@@ -12,6 +12,6 @@ import { ObjectsTableComponent } from '../objects-table/objects-table.component'
   styleUrl: './details-collapse.component.css'
 })
 export class DetailsCollapseComponent {
-  @Input() objects: Array<FoundObject>;
+  @Input({required: true}) info: ImageInfo;
   isCollapsed = true;
 }

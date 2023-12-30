@@ -10,6 +10,6 @@ import { FoundObject } from '../image.types';
   styleUrl: './objects-table.component.css'
 })
 export class ObjectsTableComponent implements OnInit {
-  @Input() objects: Array<FoundObject>;
+  @Input({required: true}) objects: Array<FoundObject>;
   ngOnInit(): void {}
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FoundObject } from '../image.types';
+import { FoundObject, ImageInfo } from '../image.types';
 import { DetailsCollapseComponent } from '../details-collapse/details-collapse.component';
 
 const b64toBlob = (b64Data: string, contentType='', sliceSize=512) => {
@@ -31,10 +31,7 @@ const b64toBlob = (b64Data: string, contentType='', sliceSize=512) => {
   styleUrl: './thumbnail.component.css'
 })
 export class ThumbnailComponent implements OnInit {
-  @Input() imageUrl: string;
-  @Input({required: true}) label: string;
-  @Input() objects: Array<FoundObject>;
-  @Input() data: string;
+  @Input({required: true}) info: ImageInfo;
   objectURL: string;
 
   constructor() {}
@@ -43,8 +40,9 @@ export class ThumbnailComponent implements OnInit {
   ngOnChanges(change: any): void {
     try {
       // We only want to render the image when we finally get data
-      if ( change.data ) {
-        const blob = b64toBlob(change.data.currentValue);
+      if ( change.info &&
+           change.info.currentValue ) {
+        const blob = b64toBlob(change.info.currentValue.data);
         this.objectURL = URL.createObjectURL(blob);
       }
     } catch (error) {
