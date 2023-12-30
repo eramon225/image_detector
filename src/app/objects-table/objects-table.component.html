@@ -7,12 +7,14 @@
 	</thead>
 	<tbody>
 		@for (obj of objects; track obj.confidence) {
-			<tr>
-				<td>{{obj.tag.en}}</td>
-				<td>
-					{{ obj.confidence.toFixed(2) }}
-				</td>
-			</tr>
+			@if( obj.tag.en ) {
+				<tr>
+					<td>{{obj.tag.en}}</td>
+					<td>
+						{{ obj.confidence.toFixed(2) }}
+					</td>
+				</tr>
+			}
 		}
 	</tbody>
 </table>
