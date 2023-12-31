@@ -15,8 +15,13 @@ import { FormsModule } from '@angular/forms';
 export class ImageInputModalComponent {
 	activeModal = inject(NgbActiveModal);
   modalReference: NgbModal;
+
+  // Form variables
   imageUrl: string;
   label: string;
+  runDetection: boolean = true;
+  
+  // bools to help with managing POST behavior
   waiting: boolean = false;
   failed: boolean = false;
   receivedImage: ImageInfo | undefined;
@@ -27,6 +32,7 @@ export class ImageInputModalComponent {
     this.waiting = false;
     this.receivedImage = undefined;
     this.failed = false;
+    this.runDetection = true;
   }
 
   updateUrl( event: any ) {
@@ -37,9 +43,18 @@ export class ImageInputModalComponent {
     this.label = event.target.value;
   }
 
+  updateCheckbox( event: any ){
+    this.runDetection = event.target.checked;
+  }
+
   onSubmit() {
+    // Reset the failed variable on re-attempts
+    this.failed = false;
+  
+    // Indicate that we're waiting to render the scroll wheel
     this.waiting = true;
-    const payload: ImagePayload = {'detect': false, 'location': this.imageUrl};
+  
+    const payload: ImagePayload = {'detect': this.runDetection, 'location': this.imageUrl};
     if ( this.label !== undefined ) {
       payload.label = this.label;
     }
