@@ -1,29 +1,27 @@
-import { Component, ElementRef, TemplateRef, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component, ElementRef, inject, Input } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ImageInfo, ImagePayload } from '../image.types';
 import { ThumbnailComponent } from '../thumbnail/thumbnail.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-image-input-modal',
-  standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule, ThumbnailComponent],
+	selector: 'app-image-input-modal',
+	standalone: true,
+  imports: [FormsModule, HttpClientModule, ThumbnailComponent],
   templateUrl: './image-input-modal.component.html',
   styleUrl: './image-input-modal.component.css'
 })
 export class ImageInputModalComponent {
-
-  constructor(private http: HttpClient, private elementRef: ElementRef) { }
-
-  private modalService = inject(NgbModal);
-  modalReference: NgbModalRef;
+	activeModal = inject(NgbActiveModal);
+  modalReference: NgbModal;
   imageUrl: string;
   label: string;
   waiting: boolean = false;
   failed: boolean = false;
   receivedImage: ImageInfo | undefined;
+
+  constructor(private http: HttpClient, private elementRef: ElementRef) { }
 
   resetModal() {
     this.waiting = false;
@@ -31,17 +29,6 @@ export class ImageInputModalComponent {
     this.failed = false;
   }
 
-  open( content: TemplateRef<any> ) {
-    this.modalReference = this.modalService.open(content);
-    // Reset the modal when we close
-    this.modalReference.result.then(() => {
-      this.resetModal();
-    }, () => {
-      this.resetModal();
-    })
-
-  }
-  
   updateUrl( event: any ) {
     this.imageUrl = event.target.value;
   }

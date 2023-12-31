@@ -1,12 +1,13 @@
 <main class="main">
 
-  <div class="input-group">
-    <input class="form-control" placeholder="Objects/id" (keyup)="updateSearch($event)">
-    <button class="btn btn-primary" (click)="onSearch()">Search</button>
+  <div class="mx-auto mt-5" style="width: 75%;">
+    <div class="input-group">
+      <input class="form-control" placeholder="Objects/id" (keyup)="updateSearch($event)">
+      <button class="btn btn-primary" (click)="onSearch()">Search</button>
+      <button class="btn btn-outline-primary" (click)="open()">New</button>
+    </div>
   </div>
 
-  <app-image-input-modal/>
-  
   <div class="row row-cols-3 g-3">
       @for ( d of incomingData; track d.id ) {
         <div class="col">

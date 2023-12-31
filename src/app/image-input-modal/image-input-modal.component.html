@@ -1,41 +1,34 @@
-<ng-template #content let-modal>
-	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">New Image</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-	</div>
-	<div class="modal-body">
-        <form>
-            <div class="form-group">
-              <label>URL</label>
-              <input class="form-control" placeholder="URL" (keyup)="updateUrl($event)">
-            </div>
-            <div class="form-group">
-              <label>Label</label>
-              <input class="form-control" placeholder="Label" (keyup)="updateLabel($event)">
-            </div>
-            <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
-        </form>
-        @if ( failed === true ) {
-          <div class="text-danger">
-            Failed to POST image!
-          </div>
-        }
-        @if( waiting === true && failed === false ) {
-          <div class="spinner-border mx-auto d-block" role="status">
-          </div>
-        }
-        @if ( receivedImage !== undefined && waiting === false ) {
-          <app-thumbnail
-            [label]="receivedImage.label"
-            [imageUrl]="receivedImage.location"
-            [objects]="receivedImage.objects"
-            [data]="receivedImage.data"
-          />
-        }
-	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn btn-danger" (click)="modal.close()">Close</button>
-	</div>
-</ng-template>
-
-<button class="btn btn-lg btn-primary" (click)="open(content)">New</button>
+<div class="modal-header">
+  <h4 class="modal-title">New Image</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <label>URL</label>
+      <input class="form-control" placeholder="URL" (keyup)="updateUrl($event)">
+    </div>
+    <div class="form-group">
+      <label>Label</label>
+      <input class="form-control" placeholder="Label" (keyup)="updateLabel($event)">
+    </div>
+    <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
+  </form>
+  @if ( failed === true ) {
+    <div class="text-danger">
+      Failed to POST image!
+    </div>
+  }
+  @if( waiting === true && failed === false ) {
+    <div class="spinner-border mx-auto d-block" role="status">
+    </div>
+  }
+  @if ( receivedImage !== undefined && waiting === false ) {
+    <app-thumbnail
+      [info]="receivedImage"
+    /> 
+  }
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

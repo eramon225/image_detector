@@ -1,10 +1,11 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ImageInfo } from './image.types';
 import { ThumbnailComponent } from './thumbnail/thumbnail.component';
 import { ImageInputModalComponent } from './image-input-modal/image-input-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { ImageInputModalComponent } from './image-input-modal/image-input-modal.
 export class AppComponent implements OnInit {
   incomingData: Array<ImageInfo>;
   search: string;
+  private modalService = inject(NgbModal);
 
   constructor(private http: HttpClient) { }
 
@@ -52,5 +54,9 @@ export class AppComponent implements OnInit {
         this.incomingData = data;
       })
     }
+  }
+
+  open() {
+		this.modalService.open(ImageInputModalComponent);
   }
 }
