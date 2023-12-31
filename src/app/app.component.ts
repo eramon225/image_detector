@@ -50,7 +50,9 @@ export class AppComponent implements OnInit {
         }
       })
     } else {
-      this.http.get<any>(`http://localhost:5000/images?objects=${this.search}`).subscribe(data => {
+      // Format the string by removing white spaces after each comma
+      const formatedSearch = this.search.replace(/\s*,\s*/g, ",");
+      this.http.get<any>(`http://localhost:5000/images?objects=${formatedSearch}`).subscribe(data => {
         this.incomingData = data;
       })
     }
