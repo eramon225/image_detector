@@ -4,19 +4,21 @@
 </div>
 <div class="modal-body">
   <form>
-    <div class="file-upload-wrapper">
+    <label>Upload File</label>
+    <div class="file-upload-wrapper mb-4">
       <input type="file" class="form-control" id="customFile" (change)="updateFile($event)" />
     </div>
+    <div class="mb-4">Or</div>
     <div class="form-group mb-4">
       <label>URL</label>
-      <input class="form-control" placeholder="URL" (keyup)="updateUrl($event)">
+      <input class="form-control" placeholder="URL" (keyup)="updateUrl($event)" [disabled]="this.uploadedFile !== undefined">
     </div>
     <div class="form-group mb-4">
       <label>Label</label>
-      <input class="form-control" placeholder="Label" (keyup)="updateLabel($event)">
+      <input class="form-control" placeholder="Label" (keyup)="updateLabel($event)" [disabled]="this.uploadedFile !== undefined">
     </div>
     <div class="form-check mb-4">
-      <input class="form-check-input" type="checkbox" checked (change)="updateCheckbox($event)">
+      <input class="form-check-input" type="checkbox" checked (change)="updateCheckbox($event)" [disabled]="this.uploadedFile !== undefined">
       <label>Run Detector</label>
     </div>
     <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
