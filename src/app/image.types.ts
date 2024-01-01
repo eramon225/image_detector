@@ -10,7 +10,7 @@ export interface FoundObject {
 export interface ImageInfo {
   id: number;
   label: string;
-  location: string;
+  path: string;
   detect: boolean;
   objects: Array<FoundObject>;
   data: string;
@@ -19,5 +19,5 @@ export interface ImageInfo {
 export interface ImagePayload {
   label?: string;
   detect: boolean;
-  location: string;
+  path: string;
 }

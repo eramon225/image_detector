@@ -11,7 +11,7 @@
 </p>
 <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
   <div class="mx-2">ID: {{info.id}}</div>
-  <div class="mx-2">Location: {{info.location}}</div>
+  <div class="mx-2">Path: {{info.path}}</div>
   @if( info.detect === false ) {
     <div class="badge bg-warning text-dark mx-2">Detection not ran</div>
   }

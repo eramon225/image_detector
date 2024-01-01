@@ -54,7 +54,7 @@ export class ImageInputModalComponent {
     // Indicate that we're waiting to render the scroll wheel
     this.waiting = true;
   
-    const payload: ImagePayload = {'detect': this.runDetection, 'location': this.imageUrl};
+    const payload: ImagePayload = {'detect': this.runDetection, 'path': this.imageUrl};
     if ( this.label !== undefined ) {
       payload.label = this.label;
     }
