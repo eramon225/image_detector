@@ -13,7 +13,6 @@ export class ImageService {
   }
 
   getImageByObjects(objects: string) {
-    console.log(`${this.url}?objects="${objects}"`)
     return this.http.get<any>(`${this.url}?objects=${objects}`);
   }
 
