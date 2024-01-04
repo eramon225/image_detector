@@ -22,6 +22,10 @@ export class AppComponent implements OnInit {
   constructor(private imageService: ImageService, private modalService: NgbModal) {}
 
   ngOnInit() {
+    this.fetchAllImages();
+  }
+
+  fetchAllImages() {
     this.imageService.getImages().subscribe(data => {
       this.incomingData = data;
     })
@@ -32,7 +36,9 @@ export class AppComponent implements OnInit {
   }
 
   onSearch() {
-    if ( Number(this.search) ) {
+    if ( this.search === undefined || this.search === "" ) {
+      this.fetchAllImages();
+    } else if ( Number(this.search) ) {
       this.imageService.getImageById(Number(this.search)).subscribe(data => {
         if ( !Array.isArray( data ) ) {
           this.incomingData = [data];
